@@ -1,0 +1,45 @@
+---------------------------------------------------------
+vCloud / Physical Lab Deployment guide. Version 1.0.0
+---------------------------------------------------------
+
+Users have access only to their user directory:
+/home/tse-admin
+Critical folders are restricted. All your scripts are under available tse-admin directory.
+
+The following is required for deployment:
+
+vCloud App based lab:
+
+> Create a basic empty vAPP
+> Create Networking in the vAPP
+> Specify the gateway was 192.168.1.1
+> Specify the IP Range as 192.168.1.2 - 192.168.1.199 (This should be sufficient)
+
+> Create one ESXi 6.0 Ux host with an IP of 192.168.1.3 only.
+** Make sure the ESXi has atleast 120GB VMFS datastore**
+> Create a Organization VDC network for external network connections
+> Provide external network for the management IP of the deployed ESXi host
+> This will NAT the 192.168.1.3 traffic to a 10.x.x.x range
+
+> SSH to the Linux Server 10.109.10.200
+> Run the lab-deploy-intro.sh script to begin the deployment
+> The information of what next needs to be done will be provided in the script interaction
+
+
+Physical Server based lab:
+
+> Book a physical server. The IP of the server should be in 10.x.x.x range
+> Create a network in the Standard Switch as VM Network
+> Run the lab-deploy-script
+
+
+------------------------------------------
+IP Guide
+-----------------------------------------
+
+The AD server should have 192.168.1.2
+The Jump should have 192.168.1.4
+
+The VC (Embedded) should have 192.168.1.10
+The PSC (External only) should have 192.168.1.11
+The VC (External only) should have 192.168.1.12

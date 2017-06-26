@@ -20,7 +20,7 @@ printf "${G}4. Deploys Few VMs without Operating Systems${N}\n"
 
 echo
 printf "\n${R}The script requires an ESXI with external network access${N}\n"
-printf "${R}The RHEL server, 10.109.10.200 with tse-admin as the login and VMware123! as the password\n${N}"
+printf "${R}The RHEL server, 10.x.x.x with tse-admin as the login and VMware123! as the password\n${N}"
 echo "For bugs or feature enhancements email gsuhas@vmware.com"
 echo
 

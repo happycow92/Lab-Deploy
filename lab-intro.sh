@@ -56,10 +56,10 @@ printf "\n${Y}Hi There, we will start deploying of Jump Server and an Active Dir
 read -p "Copying over files. Enter the datastore name of your ESXi server: " datastore_name
 
 printf "\n${Y}Copying AD files. Enter ESXi password${N}\n"
-scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/AD-vCloud root@$esx_host:/vmfs/volumes/$datastore_name/
+scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/AD-VM root@$esx_host:/vmfs/volumes/$datastore_name/
 
 printf "\n${Y}Copying Jump Files. Enter ESXi password${N}\n"
-scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/Jump-Cloud root@$esx_host:/vmfs/volumes/$datastore_name/
+scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/Jump-VM root@$esx_host:/vmfs/volumes/$datastore_name/
 
 printf "\n${Y}Copying Few scripts. Enter password again${N}\n"
 scp -r /home/tse-admin/Deploy-Scripts/base-server-deploy.sh root@$esx_host:/vmfs/volumes/$datastore_name/

@@ -1,0 +1,7 @@
+28-June-2017
+
+Replaced individual file copy with tar.gz 
+SCP tar.gz over the link (~3 Mins to copy)
+Extract tar.gz on destination. 
+Edits done to lab-intro and base-server-deploy scripts.
+

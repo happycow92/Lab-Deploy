@@ -1,3 +1,5 @@
+#!/bin/sh
+
 Create_VM ()
 {
 read -p "Enter the VM name: " VM_name

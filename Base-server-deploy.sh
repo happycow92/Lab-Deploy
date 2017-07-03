@@ -1,18 +1,20 @@
-template_folder_jump=Jump-Cloud
-template_folder_ad=AD-vCloud
+G="\033[32m"
+N="\033[0m"
+R="\033[31m"
+Y="\033[33m"
+clear
 read -p "Enter the name of the datastore where this template was copied to: " datastore
 
-# Deploying Jump
-cd /vmfs/volumes/$datastore/$template_folder_jump/
+cd /vmfs/volumes/$datastore/Jump-VM
+printf "\n${Y}Deploying Jump Server${N}"
+printf "\n${Y}Renaming the vmtx file${N}\n"
+cd /vmfs/volumes/$datastore/Jump-VM/
+mv Jump-VM.vmtx Jump-VM.vmx
 
-printf "\nDeploying Jump Server"
-printf "\nRenaming the vmtx file\n"
-mv Jump-Cloud.vmtx Jump-Cloud.vmx
+printf "\n${G}Registering the VM${N}\n"
+vim-cmd solo/registervm /vmfs/volumes/$datastore/Jump-VM/Jump-VM.vmx | tee -a vid.txt
 
-printf "\nRegistering the VM\n"
-vim-cmd solo/registervm /vmfs/volumes/$datastore/$template_folder_jump/Jump-Cloud.vmx | tee -a vid.txt
-
-printf "\nPowering On the Jump server\n"
+printf "\n${Y}Powering On the Jump server${N}. "
 VID=$(cat vid.txt)
 vim-cmd vmsvc/power.on $VID
 echo "Jump Server is $(vim-cmd vmsvc/power.getstate $VID | tail -n+2)"
@@ -20,16 +22,16 @@ rm vid.txt
 
 
 # Deploying AD
-cd /vmfs/volumes/$datastore/$template_folder_ad/
 
-printf "\nDeploying AD Server"
-printf "\Renaming the vmtx file\n"
-mv AD-vCloud.vmtx AD-vCloud.vmx
+cd /vmfs/volumes/$datastore/AD-VM
+printf "\n${Y}Deploying AD Server${N}"
+printf "\n${Y}Renaming the vmtx file${N}\n"
+mv AD-VM.vmtx AD-VM.vmx
 
-printf "\nRegistering the VM\n"
-vim-cmd solo/registervm /vmfs/volumes/$datastore/$template_folder_ad/AD-vCloud.vmx | tee -a vid.txt
+printf "\n${G}Registering the VM${N}\n"
+vim-cmd solo/registervm /vmfs/volumes/$datastore/AD-VM/AD-VM.vmx | tee -a vid.txt
 
-printf "\nPowering On the AD Server\n"
+printf "\n${Y}Powering On the AD Server${N}. "
 VID=$(cat vid.txt)
 vim-cmd vmsvc/power.on $VID
 echo "AD Server is $(vim-cmd vmsvc/power.getstate $VID | tail -n+2)"
@@ -39,5 +41,5 @@ rm vid.txt
 
 sleep 5s
 
-echo -e "\nConfigure the IP of the Jump and the AD server as per the deployment guide\n"
-echo -e "Now exiting the Server deployment script and taking you back to RHEL box.....Thank you!\n\n" && exit
+printf "\n${G}Configure the IP of the Jump and the AD server as per the deployment guide${N}\n"
+printf "${Y}Now exiting the Server deployment script and taking you back to RHEL box.....Thank you!${N}\n\n" && exit

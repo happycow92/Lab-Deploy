@@ -20,7 +20,7 @@ printf "${G}4. Deploys Few VMs without Operating Systems${N}\n"
 
 echo
 printf "\n${R}The script requires an ESXI with external network access${N}\n"
-printf "${R}The RHEL server, 10.x.x.x with tse-admin as the login and XXXXXXX! as the password\n${N}"
+printf "${R}The RHEL server, 10.109.10.200 with tse-admin as the login and VMware123! as the password\n${N}"
 echo "For bugs or feature enhancements email gsuhas@vmware.com"
 echo
 
@@ -56,13 +56,13 @@ printf "\n${Y}Hi There, we will start deploying of Jump Server and an Active Dir
 read -p "Copying over files. Enter the datastore name of your ESXi server: " datastore_name
 
 printf "\n${Y}Copying AD files. Enter ESXi password${N}\n"
-scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/AD-VM root@$esx_host:/vmfs/volumes/$datastore_name/
+#scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/AD-VM root@$esx_host:/vmfs/volumes/$datastore_name/
 
 printf "\n${Y}Copying Jump Files. Enter ESXi password${N}\n"
-scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/Jump-VM root@$esx_host:/vmfs/volumes/$datastore_name/
+#scp -r /run/media/tse-admin/Lab-Files/Lab-Templates/Jump-VM root@$esx_host:/vmfs/volumes/$datastore_name/
 
 printf "\n${Y}Copying Few scripts. Enter password again${N}\n"
-scp -r /home/tse-admin/Deploy-Scripts/base-server-deploy.sh root@$esx_host:/vmfs/volumes/$datastore_name/
+#scp /home/tse-admin/Deploy-Scripts/base-server-deploy.sh root@$esx_host:/vmfs/volumes/$datastore_name/
 
 printf "\n\n${G}Copy Complete. SSH'ing again into the host\n${N}"
 printf "${Y}Go to the /vmfs/volumes/$datastore_name/ and begin executing the base-server-deploy.sh${N}\n"
@@ -130,7 +130,7 @@ case $choice in
         ;;
 esac
 
-printf "${Y}And we are the last part. Do you want to deploy few dummy VMs?${N}"
+printf "${Y}And we are the last part. Do you want to deploy few dummy VMs? ${N}"
 read -p "Press Y to proceed and N to exit: " option
 
 case $option in

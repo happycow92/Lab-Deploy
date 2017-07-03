@@ -25,7 +25,7 @@ cat << EOF > /home/tse-admin/Deploy-Templates/embedded_vCSA_on_ESXi-complete.jso
             "datastore": "$storage"
         },
         "network": {
-            "hostname": "vcsa6.vcloud.local",
+            "hostname": "vcenter6.vcloud.local",
             "dns.servers": [
                 "192.168.1.2"
             ],
@@ -51,7 +51,7 @@ EOF
 
 function Input_Parameters
 {
-        read -p "Enter the root password for this host: " root_password
+        read -p "Enter the root password for host, $esx_host: " root_password
         read -p "Enter the datastore name where this vCenter should reside: " storage
         read -p "Enter the VM Port Group name: " VM_network
 }
